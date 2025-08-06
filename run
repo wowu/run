@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+function task:install { ## Install dependencies
+  yarn install
+}
+
+function task:dev { ## Start development environment
+  yarn dev
+}
+
+function task:help { ## List available tasks
+  awk 'BEGIN {FS=" { [#][#] ?"} /^function task:.*\{ [#][#] ?/ {sub("function task:", "", $1); printf "\033[36m%-20s\033[0m %s\n", $1, $2}' "$0"
+}
+
+task:"${@:-help}"
