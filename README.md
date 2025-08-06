@@ -32,7 +32,7 @@ Then `chmod +x run` and you're ready to go!
 alias run="./run"
 ```
 
-## Completions
+## Tab completions
 
 ### Oh My Zsh
 
