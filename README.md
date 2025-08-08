@@ -1,8 +1,6 @@
 # `run`
 
-Zero dependencies task runner.
-
-### Sample `run` script
+Zero dependencies task runner bash script.
 
 ```bash
 #!/bin/bash -e
@@ -22,17 +20,35 @@ function task:help { ## List available tasks
 task:"${@:-help}"
 ```
 
-Then `chmod +x run` and you're ready to go!
+Then `chmod +x run` and you're ready to go! Just run `./run` to see available tasks, `./run install` to run the `install` task etc.
 
-### Alias
+```bash
+$ ./run
 
-`.zshrc`, `.bashrc`:
+install              Install dependencies
+dev                  Start development environment
+help                 List available tasks
+
+$ ./run install
+
+yarn install v1.22.22
+[1/4] 🔍  Resolving packages...
+...
+```
+
+## Improvements
+
+### Shell Alias
+
+Add the following to `.zshrc`, `.bashrc`:
 
 ```bash
 alias run="./run"
 ```
 
-## Tab completions
+Now you can run `run install`, `run dev`, etc. without needing to specify the script path.
+
+### Tab completions
 
 ### Oh My Zsh
 
@@ -44,6 +60,7 @@ Then create `~/.oh-my-zsh/completions/_run` with the following content:
 
 ```zsh
 #compdef run
+# https://github.com/wowu/run v0.1
 _run() {
   case $CURRENT in
     2)
@@ -53,7 +70,8 @@ _run() {
       if [[ -f "$script" ]]; then
         tasks=(${(f)"$(
           awk '
-            BEGIN { FS=" { ## ?" }
+            BEGIN { FS="(\\(\\))? { ## ?" }
+
             /^function task:.*\{ ## ?/ {
               sub("function task:", "");
               gsub(":", "\\:");
@@ -71,3 +89,5 @@ _run() {
   esac
 }
 ```
+
+Now you can type in `run <TAB>` to auto-complete available tasks.
