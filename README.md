@@ -1,6 +1,6 @@
 # `run`
 
-Zero dependencies task runner bash script.
+Zero dependencies task runner script.
 
 ```bash
 #!/bin/bash -e
@@ -50,7 +50,7 @@ Now you can run `run install`, `run dev`, etc. without needing to specify the sc
 
 ### Tab completions
 
-### Oh My Zsh
+#### Oh My Zsh
 
 ```bash
 mkdir ~/.oh-my-zsh/completions/
