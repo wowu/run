@@ -13,8 +13,12 @@ function task:dev { ## Start development environment
   yarn dev
 }
 
+function task:deploy { ## Deploy the app ## <env>
+  yarn deploy -- "$@"
+}
+
 function task:help { ## List available tasks
-  awk 'BEGIN {FS=" { [#][#] ?"} /^function task:.*\{ [#][#] ?/ {sub("function task:", "", $1); printf "\033[36m%-20s\033[0m %s\n", $1, $2}' "$0"
+  awk -v pad=25 'BEGIN {FS="(\\(\\))? ({ )?[#][#] ?"} /^function task:.*\{ [#][#] ?/ {sub("function task:", "", $1); printf "\033[36m%-"pad"s\033[0m %s\n", $1 " \033[32m" $3, $2}' "$0"
 }
 
 task:"${@:-help}"
@@ -27,6 +31,7 @@ $ ./run
 
 install              Install dependencies
 dev                  Start development environment
+deploy <env>         Deploy the app
 help                 List available tasks
 
 $ ./run install
@@ -70,7 +75,7 @@ _run() {
       if [[ -f "$script" ]]; then
         tasks=(${(f)"$(
           awk '
-            BEGIN { FS="(\\(\\))? { ## ?" }
+            BEGIN { FS=" ?(\\(\\))? { ## ?" }
 
             /^function task:.*\{ ## ?/ {
               sub("function task:", "");
@@ -91,3 +96,7 @@ _run() {
 ```
 
 Now you can type in `run <TAB>` to auto-complete available tasks.
+
+## Credits
+
+Inspired by [Enrise/Taskfile](https://github.com/Enrise/Taskfile), [adriancooney/Taskfile](https://github.com/adriancooney/Taskfile), and [Self-documenting Makefile](https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html).

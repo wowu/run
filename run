@@ -8,8 +8,12 @@ function task:dev { ## Start development environment
   yarn dev
 }
 
+function task:deploy { ## Deploy the app ## <env>
+  yarn deploy -- "$@"
+}
+
 function task:help { ## List available tasks
-  awk 'BEGIN {FS=" { [#][#] ?"} /^function task:.*\{ [#][#] ?/ {sub("function task:", "", $1); printf "\033[36m%-20s\033[0m %s\n", $1, $2}' "$0"
+  awk -v pad=25 'BEGIN {FS="(\\(\\))? ({ )?[#][#] ?"} /^function task:.*\{ [#][#] ?/ {sub("function task:", "", $1); printf "\033[36m%-"pad"s\033[0m %s\n", $1 " \033[32m" $3, $2}' "$0"
 }
 
 task:"${@:-help}"
