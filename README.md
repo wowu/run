@@ -24,7 +24,7 @@ function task:help { ## List available tasks
 task:"${@:-help}"
 ```
 
-Save the script above as `run`. Then `chmod +x run` and you're ready to go! Just run `./run` to see available tasks, `./run install` to run the `install` task etc.
+Save the script above as `run`. Then execute `chmod +x run` and you're ready to go! Just run `./run` to see available tasks, `./run install` to run the `install` task etc.
 
 ```bash
 $ ./run
