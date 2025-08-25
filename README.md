@@ -24,7 +24,7 @@ function task:help { ## List available tasks
 task:"${@:-help}"
 ```
 
-Then `chmod +x run` and you're ready to go! Just run `./run` to see available tasks, `./run install` to run the `install` task etc.
+Save the script above as `run`. Then `chmod +x run` and you're ready to go! Just run `./run` to see available tasks, `./run install` to run the `install` task etc.
 
 ```bash
 $ ./run
@@ -51,7 +51,7 @@ Add the following to `.zshrc`, `.bashrc`:
 alias run="./run"
 ```
 
-Now you can run `run install`, `run dev`, etc. without needing to specify the script path.
+Now you can run `run install`, `run dev`, etc., instead of `./run install`.
 
 ### Tab completions
 
