@@ -41,11 +41,11 @@ yarn install v1.22.22
 ...
 ```
 
-## Improvements
+## Optional Improvements
 
 ### Shell Alias
 
-Add the following to `.zshrc`, `.bashrc`:
+Add the following to `.zshrc` or `.bashrc` depending on your shell:
 
 ```bash
 alias run="./run"
@@ -57,8 +57,10 @@ Now you can run `run install`, `run dev`, etc., instead of `./run install`.
 
 #### Oh My Zsh
 
+Create the completions directory if it doesn't exist:
+
 ```bash
-mkdir ~/.oh-my-zsh/completions/
+mkdir -p ~/.oh-my-zsh/completions/
 ```
 
 Then create `~/.oh-my-zsh/completions/_run` with the following content:
